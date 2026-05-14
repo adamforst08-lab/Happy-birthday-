@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarah ❤️</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:black;
+color:white;
+font-family:Georgia, serif;
+overflow:hidden;
+}
+
+/* 🌌 MOVING STARS */
+#stars{
+position:fixed;
+width:100%;
+height:100%;
+overflow:hidden;
+background:radial-gradient(circle at center,#111 0%,black 70%);
+z-index:-1;
+}
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+opacity:.7;
+animation:moveStar linear infinite;
+}
+
+@keyframes moveStar{
+from{
+transform:translateY(0px);
+}
+to{
+transform:translateY(-100vh);
+}
+}
+
+/* 🔐 LOCK */
+#lock{
+position:absolute;
+width:100%;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+gap:15px;
+}
+
+#lock h1{
+font-size:3rem;
+letter-spacing:4px;
+}
+
+input{
+padding:14px;
+border:none;
+border-radius:10px;
+width:220px;
+text-align:center;
+font-size:1rem;
+background:#111;
+color:white;
+outline:none;
+}
+
+button{
+padding:12px 26px;
+border:none;
+border-radius:30px;
+background:white;
+color:black;
+cursor:pointer;
+font-size:1rem;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+/* 🎬 SCENES */
+.scene{
+position:absolute;
+width:100%;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:30px;
+text-align:center;
+
+opacity:0;
+pointer-events:none;
+transition:1s ease;
+}
+
+.active{
+opacity:1;
+pointer-events:all;
+}
+
+.bigName{
+font-size:4rem;
+letter-spacing:6px;
+margin-bottom:25px;
+text-shadow:0 0 20px white;
+}
+
+.poem{
+max-width:750px;
+line-height:2;
+font-size:1.05rem;
+background:rgba(255,255,255,.05);
+padding:25px;
+border-radius:20px;
+backdrop-filter:blur(6px);
+border:1px solid rgba(255,255,255,.15);
+}
+
+/* 🎥 VIDEO */
+iframe{
+width:340px;
+height:200px;
+border:none;
+border-radius:20px;
+box-shadow:0 0 30px rgba(255,255,255,.4);
+}
+
+/* 💖 FINAL */
+.finalTitle{
+font-size:4rem;
+letter-spacing:6px;
+text-shadow:0 0 25px red;
+}
+
+.finalSub{
+font-size:1.5rem;
+margin-top:20px;
+}
+
+/* 💌 SECRET */
+#secret{
+opacity:0;
+transition:1.5s;
+margin-top:30px;
+max-width:700px;
+line-height:2;
+font-size:1.1rem;
+}
+
+/* 💥 FLASH */
+#flash{
+position:fixed;
+width:100%;
+height:100%;
+background:white;
+opacity:0;
+pointer-events:none;
+z-index:999;
+}
+
+/* 📳 SHAKE */
+@keyframes shake{
+0%{transform:translate(0,0);}
+25%{transform:translate(-5px,3px);}
+50%{transform:translate(5px,-3px);}
+75%{transform:translate(-3px,2px);}
+100%{transform:translate(0,0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="stars"></div>
+<div id="flash"></div>
+
+<!-- 🔐 LOCK -->
+<div id="lock">
+<h1>SARAH</h1>
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+<button onclick="unlock()">Enter</button>
+</div>
+
+<!-- 🎬 INTRO -->
+<div class="scene" id="scene0">
+<h1 class="bigName" id="introText"></h1>
+</div>
+
+<!-- 🖤 POEMS -->
+
+<div class="scene" id="scene1">
+<h1 class="bigName">SARAH</h1>
+
+<div class="poem">
+You arrived quietly, yet somehow every part of my life began to sound different after you.  
+Even silence changed its shape.  
+I started seeing your name inside ordinary things — in midnight skies, in unfinished thoughts, in the spaces between songs.  
+You became dangerous in the softest way possible.  
+Not because you destroyed me… but because I would have allowed you to.  
+And maybe that is what scares me most.  
+The fact that if you asked for every fragile piece of my heart, I would place it into your hands willingly, smiling while you held the power to ruin me completely.
+</div>
+
+<button onclick="nextScene()">Continue</button>
+</div>
+
+<div class="scene" id="scene2">
+<h1 class="bigName">SARAH</h1>
+
+<div class="poem">
+There is something cruel about the way you stay inside my mind.  
+You appear in moments where you shouldn’t exist at all.  
+Late nights. Quiet rooms. Empty streets.  
+It feels as though my soul memorized you against my permission.  
+And now every version of peace somehow carries your shadow inside it.  
+I do not know if this is love or obsession anymore.  
+Maybe it became both a long time ago.  
+But if loving you means carrying this beautiful ache forever, then I think I would rather suffer beside your memory than heal without you.
+</div>
+
+<button onclick="nextScene()">Continue</button>
+</div>
+
+<div class="scene" id="scene3">
+<h1 class="bigName">SARAH</h1>
+
+<div class="poem">
+You are my favorite danger.  
+The kind people warn others about in stories.  
+The kind that feels beautiful enough to ignore every consequence.  
+And maybe I should run from you.  
+Maybe I should stop giving your name a permanent home inside my thoughts.  
+But every time I try to escape you, I only discover another reason to stay.  
+That is the tragedy of you, Sarah.  
+You do not force your way into my heart.  
+I open every door myself.
+</div>
+
+<button onclick="nextScene()">Continue</button>
+</div>
+
+<div class="scene" id="scene4">
+<h1 class="bigName">SARAH</h1>
+
+<div class="poem">
+Some people become temporary chapters.  
+But you… you became the entire atmosphere of the story.  
+Every emotion feels heavier after meeting you.  
+Every silence deeper.  
+Every goodbye more terrifying.  
+I think that is why your presence unsettles me so much.  
+Because losing you feels impossible even before it happens.  
+And loving you feels like standing too close to fire while pretending I do not enjoy the burn.
+</div>
+
+<button onclick="nextScene()">Continue</button>
+</div>
+
+<div class="scene" id="scene5">
+<h1 class="bigName">SARAH</h1>
+
+<div class="poem">
+I wonder if you know what you do to people.  
+How your existence quietly rearranges hearts without asking permission.  
+You walk through my thoughts like a ghost dressed in moonlight.  
+Soft. Untouchable. Dangerous.  
+And every night I tell myself I should forget you… yet somehow your name becomes even louder in my chest.  
+Perhaps some people are never meant to be escaped.  
+Perhaps some people are designed to haunt us beautifully forever.
+</div>
+
+<button onclick="nextScene()">Continue</button>
+</div>
+
+<div class="scene" id="scene6">
+<h1 class="bigName">SARAH</h1>
+
+<div class="poem">
+You became the kind of feeling I cannot explain without sounding insane.  
+Because how do I describe the way your name softens every dark part of me?  
+How do I explain that even sadness feels less unbearable when it carries traces of you?  
+There are nights where I stare into darkness and somehow still see your eyes waiting there.  
+And honestly… I do not even want freedom from it anymore.
+</div>
+
+<button onclick="nextScene()">Continue</button>
+</div>
+
+<div class="scene" id="scene7">
+<h1 class="bigName">SARAH</h1>
+
+<div class="poem">
+If I could keep one thing forever, it would not be time.  
+It would not be money.  
+It would not even be peace.  
+It would be the feeling of existing near you.  
+Because somehow your presence makes the world quieter in the most dangerous way.  
+You became my favorite addiction without ever asking me to stay addicted at all.
+</div>
+
+<button onclick="nextScene()">Continue</button>
+</div>
+
+<div class="scene" id="scene8">
+<h1 class="bigName">SARAH</h1>
+
+<div class="poem">
+I think the universe made you too unforgettable on purpose.  
+That is why every attempt to move on feels incomplete.  
+Because no matter where I go, some version of you follows me there.  
+Maybe love was never supposed to feel safe.  
+Maybe real love was always meant to ruin us beautifully.
+</div>
+
+<button onclick="nextScene()">Continue</button>
+</div>
+
+<div class="scene" id="scene9">
+<h1 class="bigName">SARAH</h1>
+
+<div class="poem">
+You are the only person who ever made chaos feel comforting.  
+And that terrifies me more than anything.  
+Because now every calm moment feels empty without your presence beside it.  
+I never meant to become this attached to someone.  
+Yet somehow your existence slipped beneath my skin and stayed there permanently.
+</div>
+
+<button onclick="nextScene()">Continue</button>
+</div>
+
+<div class="scene" id="scene10">
+<h1 class="bigName">SARAH</h1>
+
+<div class="poem">
+If destiny truly exists, then I think it looks a little like you.  
+Beautiful enough to worship.  
+Dangerous enough to destroy me.  
+And impossible to forget no matter how hard I try.  
+Some loves arrive gently.  
+But you arrived like a storm disguised as poetry.
+</div>
+
+<button onclick="nextScene()">Continue</button>
+</div>
+
+<!-- 🎥 SWEATER WEATHER -->
+<div class="scene" id="scene11">
+
+<h1 class="bigName">SARAH</h1>
+
+<iframe
+src="https://www.youtube.com/embed/GCdwKhTtNNw">
+</iframe>
+
+<p style="margin-top:20px;">
+Sweater Weather 🌙
+</p>
+
+<button onclick="nextScene()">Continue</button>
+
+</div>
+
+<!-- 💖 FINAL -->
+<div class="scene" id="scene12">
+
+<h1 class="finalTitle">
+HAPPY BIRTHDAY SARAH ❤️
+</h1>
+
+<div class="finalSub">
+My Favorite Person
+</div>
+
+<div id="secret">
+Sarah…<br><br>
+
+You became the most beautiful curse of my life.  
+The kind people write novels about but never recover from.  
+And maybe loving you was never supposed to save me.  
+Maybe it was only supposed to change me forever.  
+Still… if I had to live this story again,  
+I would still choose you every single time.
+</div>
+
+</div>
+
+<script>
+
+/* 🌌 STARS */
+const stars=document.getElementById("stars");
+
+for(let i=0;i<120;i++){
+
+let star=document.createElement("div");
+
+star.className="star";
+
+star.style.left=Math.random()*100+"vw";
+star.style.top=Math.random()*100+"vh";
+
+star.style.animationDuration=
+(5+Math.random()*10)+"s";
+
+stars.appendChild(star);
+}
+
+/* 🎬 SCENES */
+const scenes=[
+"scene0",
+"scene1",
+"scene2",
+"scene3",
+"scene4",
+"scene5",
+"scene6",
+"scene7",
+"scene8",
+"scene9",
+"scene10",
+"scene11",
+"scene12"
+];
+
+let current=-1;
+
+/* 🔐 PASSWORD */
+function unlock(){
+
+const pass=
+document.getElementById("password").value;
+
+if(pass==="05.04.25"){
+
+document.getElementById("lock").style.display="none";
+
+startStory();
+
+}else{
+
+alert("Wrong Password ❤️");
+}
+}
+
+/* 🎬 START */
+function startStory(){
+
+current=0;
+
+showScene(current);
+
+typeIntro();
+}
+
+/* ✍️ INTRO */
+function typeIntro(){
+
+const text=
+"A story written only for Sarah ❤️";
+
+let i=0;
+
+const el=
+document.getElementById("introText");
+
+const typing=
+setInterval(()=>{
+
+el.innerHTML+=text[i];
+
+i++;
+
+if(i>=text.length){
+
+clearInterval(typing);
+
+setTimeout(()=>{
+nextScene();
+},1500);
+}
+
+},60);
+}
+
+/* 🎬 SHOW */
+function showScene(index){
+
+if(scenes[current]){
+
+document
+.getElementById(scenes[current])
+.classList
+.remove("active");
+}
+
+current=index;
+
+document
+.getElementById(scenes[current])
+.classList
+.add("active");
+
+if(current===12){
+
+finalEffect();
+}
+}
+
+/* 🎬 NEXT */
+function nextScene(){
+
+if(current<scenes.length-1){
+
+showScene(current+1);
+}
+}
+
+/* 💥 FINAL */
+function finalEffect(){
+
+const flash=
+document.getElementById("flash");
+
+flash.style.opacity=1;
+
+setTimeout(()=>{
+flash.style.opacity=0;
+},150);
+
+document.body.style.animation=
+"shake .6s";
+
+setTimeout(()=>{
+document.body.style.animation="";
+},600);
+}
+
+/* 💌 SECRET */
+let clicks=0;
+
+document.addEventListener("click",()=>{
+
+if(current===12){
+
+clicks++;
+
+if(clicks===10){
+
+document
+.getElementById("secret")
+.style
+.opacity=1;
+}
+}
+});
+
+</script>
+
+</body>
+</html>
